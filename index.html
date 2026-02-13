@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Dhrubo - Script Writer, Storyteller, and Dream Weaver.">
+    <title>Dhrubo | Professional Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #ff2e63;
+            --primary-hover: #d41e4e;
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 20, 0.85);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(255, 46, 99, 0.08), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(46, 99, 255, 0.05), transparent 25%);
+            filter: blur(40px);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px; 
+        }
+
+        /* Navigation */
+        nav {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(10, 10, 10, 0.9);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #a0a0a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        /* FIXED IMAGE CONTAINER */
+        .hero-img-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 20px; /* Safe space */
+        }
+
+        /* FIXED IMAGE STYLE - No offset border */
+        .hero-img {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 30px; 
+            /* Direct border applied to image */
+            border: 3px solid var(--primary);
+            /* Glowing effect */
+            box-shadow: 0 0 30px rgba(255, 46, 99, 0.25);
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 45px rgba(255, 46, 99, 0.4);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 46, 99, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 46, 99, 0.4);
+        }
+
+        /* Portfolio Section */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto 0;
+        }
+
+        .portfolio {
+            padding: 80px 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0 120px 0;
+            background: linear-gradient(to top, rgba(10,10,10,1), transparent);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            max-width: 100%;
+        }
+
+        .contact-info {
+            padding: 50px;
+            background: rgba(255, 46, 99, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        /* Social Buttons */
+        .social-buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-btn-large {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .social-btn-large:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Tooltip */
+        .social-btn-large::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        
+        .social-btn-large:hover::after {
+            opacity: 1;
+            bottom: -35px;
+        }
+
+        .contact-form {
+            padding: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-img-container {
+                order: -1;
+                margin-bottom: 10px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 40px 25px;
+            }
+            
+            .contact-info {
+                border-bottom: 1px solid var(--glass-border);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .social-buttons-row {
+                gap: 15px;
+            }
+            
+            .social-btn-large {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            input, textarea {
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #0a0a0a;
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                border-bottom: 1px solid var(--glass-border);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-bg"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">Dhrubo<span>.</span></div>
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Works</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="subtitle">I'm a <span class="typing"></span></div>
+                    <h1>Crafting Stories<br>That Live Forever.</h1>
+                    <p>
+                        I explore deep ideas and craft words that touch hearts. 
+                        My passion is finding the extraordinary in the ordinary 
+                        and sharing it with the world.
+                    </p>
+                    <a href="#contact" class="btn btn-primary">Let's Talk <i class="fa-solid fa-arrow-right" style="margin-left: 10px; font-size: 0.8em;"></i></a>
+                </div>
+                <div class="hero-img-container">
+                    <img src="https://i.ibb.co/Mym249W6/file-43.jpg" alt="Dhrubo Profile" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">What I Do</h2>
+            <div class="portfolio-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-feather-pointed"></i></div>
+                    <h3>Script Writing</h3>
+                    <p>Compelling scripts for videos, short films, and digital content that engage audiences from the first second.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Storytelling</h3>
+                    <p>Weaving intricate narratives that resonate emotionally and leave a lasting impact on the reader.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Creative Ideation</h3>
+                    <p>Transforming raw concepts into polished, execution-ready creative strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Me</h3>
+                    <p style="margin-bottom: 30px; color: var(--text-muted);">
+                        Have a story to tell or a project in mind? Click below to connect with me directly.
+                    </p>
+                    
+                    <div class="social-buttons-row">
+                        <a href="mailto:dhrubomohiuddinabdulkadir@gmail.com" class="social-btn-large" data-tooltip="Email"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="https://wa.me/8801994013634" target="_blank" class="social-btn-large" data-tooltip="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/mohiuddin.abdul.kadir.2025" target="_blank" class="social-btn-large" data-tooltip="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/dhrubo_morse?igsh=aHNsazZyOTY4dWN2" target="_blank" class="social-btn-large" data-tooltip="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" class="form-control" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mohiuddin Abdul Kadir Dhrubo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Effect
+        const texts = ["Script Writer", "Storyteller", "Dream Weaver"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+
+        function type() {
+            if (count === texts.length) count = 0;
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+            
+            const typingElement = document.querySelector(".typing");
+            if (typingElement) typingElement.textContent = letter;
+
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); 
+            } else {
+                setTimeout(type, 100); 
+            }
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Contact Form Handler (Mailto)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            
+            // Your Personal Email
+            window.location.href = `mailto:dhrubomohiuddinabdulkadir@gmail.com?subject=${subject}&body=${body}`;
+            
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Opening Email Client...";
+            setTimeout(() => { btn.innerText = originalText; }, 3000);
+        });
+    </script>
+</body>
+</html>
